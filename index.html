@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Электронная книга</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="book-container">
+        <header>
+            <h1 id="book-title">Путь программиста</h1>
+            <p class="subtitle">Интерактивное обучение с опросами</p>
+        </header>
+
+        <!-- Оглавление -->
+        <nav class="toc">
+            <h2>📚 Оглавление</h2>
+            <ul id="table-of-contents">
+                <li><a href="#" data-chapter="1">Глава 1: Основы программирования</a></li>
+                <li><a href="#" data-chapter="2">Глава 2: Продвинутые техники</a></li>
+                <li><a href="#" data-chapter="3">Глава 3: Архитектура ПО</a></li>
+            </ul>
+        </nav>
+
+        <!-- Контейнер для отображения текущей главы -->
+        <main id="chapter-content">
+            <div class="welcome-message">
+                <p>📖 Выберите главу из оглавления, чтобы начать чтение</p>
+            </div>
+        </main>
+    </div>
+
+    <!-- Модальное окно опроса -->
+    <div id="survey-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>📝 Опрос после главы</h2>
+            <form id="survey-form">
+                <div id="survey-questions"></div>
+                <button type="submit" class="submit-survey">Отправить ответы</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
