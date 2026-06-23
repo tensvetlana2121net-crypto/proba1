@@ -6,15 +6,220 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: #f5f5f5;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
     color: #333;
     line-height: 1.6;
+    min-height: 100vh;
 }
 
 .book-container {
-    max-width: 1000px;
+    max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
+    position: relative;
+}
+
+/* ========== ОБЛОЖКА КНИГИ ========== */
+.book-cover {
+    position: relative;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+    border-radius: 30px;
+    overflow: hidden;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.book-cover:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 35px 60px -15px rgba(0, 0, 0, 0.6);
+}
+
+.cover-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.2) 100%);
+    z-index: 1;
+}
+
+.cover-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 60px 40px;
+    color: white;
+}
+
+.cover-badge {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    padding: 8px 20px;
+    border-radius: 50px;
+    font-size: 14px;
+    letter-spacing: 2px;
+    margin-bottom: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.cover-title {
+    font-size: 5em;
+    font-weight: 800;
+    margin: 20px 0;
+    text-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    letter-spacing: -1px;
+    line-height: 1.2;
+}
+
+.cover-subtitle {
+    font-size: 1.3em;
+    opacity: 0.95;
+    margin-bottom: 30px;
+    font-weight: 300;
+}
+
+.cover-divider {
+    margin: 30px 0;
+    font-size: 1.5em;
+    letter-spacing: 10px;
+}
+
+.cover-author {
+    margin-top: 40px;
+    font-size: 0.95em;
+    opacity: 0.9;
+}
+
+.author-line {
+    margin-bottom: 5px;
+}
+
+.edition-line {
+    font-size: 0.85em;
+    opacity: 0.7;
+}
+
+.open-book-btn {
+    background: white;
+    color: #667eea;
+    border: none;
+    padding: 15px 40px;
+    font-size: 1.1em;
+    font-weight: 600;
+    border-radius: 50px;
+    cursor: pointer;
+    margin-top: 40px;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.open-book-btn:hover {
+    transform: scale(1.05);
+    gap: 15px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+.btn-arrow {
+    transition: transform 0.3s ease;
+}
+
+.open-book-btn:hover .btn-arrow {
+    transform: translateX(5px);
+}
+
+/* Декоративные круги */
+.cover-decoration {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.circle {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.circle-1 {
+    width: 300px;
+    height: 300px;
+    top: -100px;
+    right: -100px;
+}
+
+.circle-2 {
+    width: 200px;
+    height: 200px;
+    bottom: -50px;
+    left: -50px;
+}
+
+.circle-3 {
+    width: 150px;
+    height: 150px;
+    top: 50%;
+    left: 20%;
+}
+
+/* ========== ОСНОВНОЙ КОНТЕНТ КНИГИ ========== */
+.book-content {
+    position: relative;
+    animation: fadeInUp 0.6s ease;
+}
+
+.book-content.hidden {
+    display: none;
+}
+
+.close-book-btn {
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    background: white;
+    color: #333;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid #667eea;
+    font-size: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+}
+
+.close-book-btn:hover {
+    background: #667eea;
+    color: white;
+    transform: rotate(90deg);
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 header {
@@ -56,17 +261,19 @@ header {
     text-decoration: none;
     color: #333;
     font-size: 1.1em;
-    transition: color 0.3s;
+    transition: all 0.3s;
     display: block;
-    padding: 10px;
+    padding: 12px 15px;
     background: #f8f9fa;
     border-radius: 8px;
+    border-left: 3px solid transparent;
 }
 
 .toc a:hover {
     color: #667eea;
     background: #e9ecef;
     transform: translateX(5px);
+    border-left-color: #667eea;
 }
 
 #chapter-content {
@@ -82,6 +289,11 @@ header {
     font-size: 1.2em;
     color: #999;
     padding: 50px;
+}
+
+.welcome-icon {
+    font-size: 4em;
+    margin-bottom: 20px;
 }
 
 /* Медиа-контейнеры */
@@ -114,6 +326,12 @@ header {
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
 
+figcaption {
+    margin-top: 10px;
+    color: #666;
+    font-size: 0.9em;
+}
+
 /* Модальное окно */
 .modal {
     display: none;
@@ -135,6 +353,8 @@ header {
     max-width: 600px;
     border-radius: 15px;
     animation: slideIn 0.3s;
+    max-height: 80vh;
+    overflow-y: auto;
 }
 
 .close {
@@ -159,6 +379,19 @@ header {
     to { transform: translateY(0); opacity: 1; }
 }
 
+.survey-question {
+    margin-bottom: 20px;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 10px;
+}
+
+.survey-input {
+    margin-top: 8px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
 .submit-survey {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
@@ -169,10 +402,11 @@ header {
     font-size: 16px;
     margin-top: 20px;
     transition: transform 0.2s;
+    width: 100%;
 }
 
 .submit-survey:hover {
-    transform: scale(1.05);
+    transform: scale(1.02);
 }
 
 /* Кнопки навигации */
@@ -191,11 +425,17 @@ header {
     padding: 10px 20px;
     border-radius: 8px;
     cursor: pointer;
-    transition: background 0.3s;
+    transition: all 0.3s;
 }
 
-.nav-btn:hover {
+.nav-btn:hover:not(:disabled) {
     background: #5a67d8;
+    transform: translateY(-2px);
+}
+
+.nav-btn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
 }
 
 /* Адаптивность */
@@ -214,5 +454,27 @@ header {
     
     #book-title {
         font-size: 1.8em;
+    }
+    
+    .cover-title {
+        font-size: 2.5em;
+    }
+    
+    .cover-subtitle {
+        font-size: 1em;
+    }
+    
+    .cover-content {
+        padding: 40px 20px;
+    }
+    
+    .open-book-btn {
+        padding: 12px 30px;
+        font-size: 1em;
+    }
+    
+    .close-book-btn {
+        top: 5px;
+        right: 5px;
     }
 }
