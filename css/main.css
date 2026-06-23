@@ -1,0 +1,11 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  font-size: 14px;
+}
+.v3:16 {
+  background: linear-gradient(rgba(232,50,115,0.5), rgba(51,142,180,0.5));
+  width: 286px;
+  height: 75px;
+}
